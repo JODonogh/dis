@@ -1,9 +1,25 @@
 // REST API Server
 import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 import routes from './src/routes/routes';
 
 const app = express ();
 const PORT = 3000; // choosing the regular 3000 port
+
+//mongoose connection
+mongoose.Promise = global.Promise;//promises used to prevent waiting
+mongoose.connect('mongodb://localhost/db',{//connecting with mongoose
+    useNewUrlParser: true
+});
+
+//bodyparser- allows the sending of the mongoDB representation to the express server in JSON format
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+//serve static files to client
+//exposed via http://localhost:3000/football.jpeg
+app.use(express.static('public'));
 
 routes(app); //sending the express instance to routes.js
 
