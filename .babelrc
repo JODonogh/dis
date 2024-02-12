@@ -1,0 +1,5 @@
+{// compiling the latest version of javascript into readible code
+    "presets": [
+        "@babel/preset-env"
+    ]
+}
