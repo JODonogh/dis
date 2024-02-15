@@ -4,7 +4,7 @@ import { addList,
     updateList,
     deleteList } from '../controllers/controllers'
 
-   
+// routes to deal with request
 // routes to call the Uniform Resource Identifier (URI) for a resource to get back 
 const routes = (app) => {//getting created express instance from index.js
     app.route('/')//creating an endpoint or URI
@@ -17,7 +17,7 @@ const routes = (app) => {//getting created express instance from index.js
         console.log(`URL of where the request is from: ${req.originalUrl}`)//getting the original UR Location from requestor
         console.log(`REST Verb used: ${req.method}`)//examing the REST verb the requester used
         next();//do the official response
-    }, getList)
+    }, getList)//decoupling data layer from routes layer
 
     //passing in the contacts created from the controller response
     .post(addList);//passing in the function/controller into the post command
