@@ -9,31 +9,29 @@ const PORT = 3000; // choosing the regular 3000 port
 
 //mongoose connection
 mongoose.Promise = global.Promise;//promises used to prevent waiting
-mongoose.connect('mongodb://localhost/db',{//connecting with mongoose
-    useNewUrlParser: true
-});
+mongoose.connect('mongodb://localhost/db');
 
-//bodyparser- allows the sending of the mongoDB representation to the express server in JSON format
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+//Using built in middleware of express for JSON and urlencoded
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //serve static files to client
 //exposed via http://localhost:3000/football.jpeg
 app.use(express.static('public'));
 
-routes(app); //sending the express instance to routes.js
-
-//basic 404 handler taken from Ferreira dissertation
-app.use((req, res)=>{
-    res.status(404).send('Not Found');
+//POST - express.json and express.urlencoded
+app.post( '/item', (req, res) => {
+    console.log(req.body);
+    res.send(req.body)
 })
 
-//basic error handler taken from Ferreira dissertation
-app.use((err, req, res)=> {
-    // if the route has a specific error response, this is sent otherwise send 500
-    console.error(err);
-    res.status(500).send(err.response || "oops something went wrong");
-});
+routes(app); //sending the express instance to routes.js
+
+//error handling route
+app.use((err, req, res, next ) => {//arguments for error handler
+    console.error(err.stack);// the stack trace of the error 
+    res.status(500).send('Something went wrong');
+})
 
  // listening to see if the server is running 
  app.listen(PORT, () => 

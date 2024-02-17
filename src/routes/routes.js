@@ -32,6 +32,11 @@ const routes = (app) => {//getting created express instance from index.js
 
     //delete list item
     .delete(deleteList)
+
+    //GET - redirect method
+    app.get('/redirect', (req, res) => {
+        res.redirect('https://github.com/JODonogh/dis')
+})
 }
 
 export default routes;
