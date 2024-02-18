@@ -2,7 +2,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import routes from './src/routes/routes';
+import routes from './src/routes/routes.js';
 
 const app = express ();
 const PORT = 3000; // choosing the regular 3000 port

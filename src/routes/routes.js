@@ -2,7 +2,7 @@ import { addList,
     getList, 
     getListWithID,
     updateList,
-    deleteList } from '../controllers/controllers'
+    deleteList } from '../controllers/controllers.js'
 
 // routes to deal with request
 // routes to call the Uniform Resource Identifier (URI) for a resource to get back 
@@ -33,7 +33,7 @@ const routes = (app) => {//getting created express instance from index.js
     //delete list item
     .delete(deleteList)
 
-    //GET - redirect method
+    //creating a URI to redirect
     app.get('/redirect', (req, res) => {
         res.redirect('https://github.com/JODonogh/dis')
 })

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ListSchema } from '../models/model';
+import { ListSchema } from '../models/model.js';
 
 const List = mongoose.model('List', ListSchema);
 
