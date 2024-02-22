@@ -11,8 +11,15 @@ const routes = (app) => {//getting created express instance from index.js
     .get((req,res) =>
         res.send('GET request sucessful!')
     )
-    
-    app.route('/list')//creating an endpoint or URI
+    app.route('/options')//creating an endpoint for UI options
+    .get((req,res) =>
+        res.send('GET request sucessful!')
+    )
+    .patch((req,res) =>
+        res.send('Patch request sucessful!')
+    )
+
+    app.route('/list')//endpoint/URI for the DOM test
     .get((req,res, next) =>{
         console.log(`URL of where the request is from: ${req.originalUrl}`)//getting the original UR Location from requestor
         console.log(`REST Verb used: ${req.method}`)//examing the REST verb the requester used
@@ -33,6 +40,40 @@ const routes = (app) => {//getting created express instance from index.js
     //delete list item
     .delete(deleteList)
 
+    app.route('/form')//endpoint for the data binding form test
+    .get((req,res) =>
+        res.send('GET request sucessful!')
+    )
+
+    .put((req,res) =>
+        res.send('Patch request sucessful!')
+    )
+
+    .post((req,res) =>
+        res.send('Post request sucessful!')
+    )
+
+    .delete((req,res) =>
+    res.send('Delete request sucessful!')
+    )
+
+    //endpoint for the results 
+    app.route('/results')
+    .get((req,res) =>
+        res.send('GET request sucessful!')
+    )
+
+    .put((req,res) =>
+        res.send('Patch request sucessful!')
+    )
+
+    .post((req,res) =>
+        res.send('Post request sucessful!')
+    )
+
+    .delete((req,res) =>
+    res.send('Delete request sucessful!')
+    )
     //creating a URI to redirect
     app.get('/redirect', (req, res) => {
         res.redirect('https://github.com/JODonogh/dis')
