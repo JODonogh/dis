@@ -3,9 +3,15 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import routes from './src/routes/routes.js';
+//import compress from 'compression';// importing the use of 
 
 const app = express ();
 const PORT = 3000; // choosing the regular 3000 port
+
+//configuring the behaviour of the server
+//enabling etag caching for the entire application
+app.set('etag', true )
+//app.use(compress())
 
 //mongoose connection
 mongoose.Promise = global.Promise;//promises used to prevent waiting
@@ -16,8 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //serve static files to client
-//exposed via http://localhost:3000/football.jpeg
-app.use(express.static('public'));
+//exposed via http://localhost:3000/static/football.jpeg
+//setting up caching with the Etag and maxAge in the Header
+app.use('/static', express.static('public', {etag: true, maxAge: 360000}));
 
 //POST - express.json and express.urlencoded
 app.post( '/item', (req, res) => {
