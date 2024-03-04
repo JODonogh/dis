@@ -6,7 +6,7 @@ import { addList,
 
 // routes to deal with request
 // routes to call the Uniform Resource Identifier (URI) for a resource to get back 
-const routes = (app) => {//getting created express instance from index.js
+const routes = (app) => {//getting the created express instance from index.js
     app.route('/')//creating an endpoint or URI
     .get((req,res) =>
         res.send('GET request sucessful!')
