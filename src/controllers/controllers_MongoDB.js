@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { ListSchema } from '../models/model.js';
 
-const List = mongoose.model('List', ListSchema);
+const List = mongoose.model('Todo', ListSchema);
 
 //controllers to interact with the data layer
 // we could change the methods to call SQL for instance
@@ -16,7 +16,7 @@ export const mongo_methods = {
                 res.json(newList);// transfering a state to change the state of the view
             })
             .catch(err=>{
-                res.send(err);//otherwise send the error 
+                res.status(400).json(err);//otherwise send the error 
             });
     },
 
@@ -44,7 +44,7 @@ export const mongo_methods = {
             })
             .catch(err=>{
                 console.error('Error fetching list:', err);
-                res.status(404).json({ error: 'Internal Server Error' });
+                res.status(404).json({ error: 'Not Found' });
             })
     },
 
@@ -59,7 +59,7 @@ export const mongo_methods = {
             })
             .catch((err) =>{
                 console.error('Error udpating list:', err);
-                res.status(404).json({ error: 'Internal Server Error' });
+                res.status(404).json({ error: 'Not Found' });
             })     
     },
 
@@ -71,7 +71,7 @@ export const mongo_methods = {
             })
             .catch((err) =>{
                 console.error('Error deleting list:', err);
-                res.status(404).json({ error: 'Internal Server Error' });
+                res.status(404).json({ error: 'Not Found' });
             })     
     }
 };

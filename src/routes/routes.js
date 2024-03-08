@@ -19,7 +19,7 @@ const routes = (app) => {//getting the created express instance from index.js
         res.send('Patch request sucessful!')
     )
 
-    app.route('/list')//endpoint/URI for the DOM test
+    app.route('/todo')//endpoint/URI for the DOM test
     .get((req,res, next) =>{
         console.log(`URL of where the request is from: ${req.originalUrl}`)//getting the original UR Location from requestor
         console.log(`REST Verb used: ${req.method}`)//examing the REST verb the requester used
@@ -30,7 +30,7 @@ const routes = (app) => {//getting the created express instance from index.js
     .post(addList);//passing in the function/controller into the post command
 
     //passing in the unique ID 
-    app.route('/list/:listId')
+    app.route('/todo/:listId')
     //get list item
     .get(getListWithID)
 

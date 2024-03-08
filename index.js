@@ -41,12 +41,6 @@ app.use(bodyParser.json());
 //setting up caching with the Etag and maxAge in the Header
 app.use('/static', express.static('public', {etag: true, maxAge: 360000}));
 
-//POST - express.json and express.urlencoded
-app.post( '/item', (req, res) => {
-    console.log(req.body);
-    res.send(req.body)
-})
-
 routes(app); //sending the express instance to routes.js
 
 //error handling route
