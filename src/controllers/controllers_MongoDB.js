@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { ListSchema } from '../models/model.js';
 
-const List = mongoose.model('Todo', ListSchema);
+const List = mongoose.model('List', ListSchema);
 
 //controllers to interact with the data layer
 // we could change the methods to call SQL for instance

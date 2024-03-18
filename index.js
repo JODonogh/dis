@@ -5,12 +5,14 @@ import bodyParser from 'body-parser';
 import routes from './src/routes/routes.js';
 import compress from 'compression';// importing the use of 
 import path from 'path';
+import cors from 'cors';
 const __dirname = path.resolve();
 
 const app = express ();
 const PORT = 3000; // choosing the regular 3000 port
 
 app.use(express.static(path.join(__dirname, '.angular/dist/angular')))// express middleware to serve static files (scripts/images)
+app.use(cors()); 
 
 //configuring the behaviour of the server
 //enabling etag caching for the entire application
