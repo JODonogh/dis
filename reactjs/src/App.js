@@ -70,8 +70,8 @@ function App() {
 
     <div className="List">
       {items.map((item)=>{
-        const {_id, Title} = item
-        return <ListItem title={Title} id={_id} setItems={setItems} getlist={GetList}/>
+        const {_id, Title, setItems} = item
+        return <ListItem title={Title} id={_id} setItems= {setItems} items={item} />
       })}
     </div>
 

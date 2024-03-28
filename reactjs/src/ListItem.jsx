@@ -17,8 +17,7 @@ function ListItem(props){
             }
             const data = await res.json()
             
-            props.setItems(items=> items.filter(item=> item._id !== data._id))
-            console.log(props)
+            setItems(items=> items.filter(item=> item._id !== data._id));
         } catch (error){
             console.error("Error updating the list", error)
         }
@@ -32,9 +31,8 @@ function ListItem(props){
                 throw new Error("Sorry, the task has failed to be updated")
             }
             const data = await res.json()
-            
+            console.log(typeof props.setItems)
             props.setItems(items=> items)
-            console.log(props)
         } catch (error){
             console.error("Error updating the list", error)
         }
