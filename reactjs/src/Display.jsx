@@ -1,0 +1,31 @@
+import React from "react"
+import { useNavigate } from 'react-router-dom';
+
+
+const Display = (props) => {
+  const his = useNavigate();
+    if (props.items) {
+      return (
+        <ul>
+          {props.items.map((item) => (
+            <li key={item._id}>
+              {item.Title} - {item.Status ? "Saved" : "Not Saved"} - {" "}
+              <button
+                onClick={(event) => {
+                  props.editthisItem(item);
+                  his('/edit')
+                }}
+              >
+                Edit
+              </button>
+              <button onClick={() => props.deleteItem(item)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      );
+    } else {
+      return <h1>Still Loading or No Items</h1>;
+    }
+  };
+
+export default Display

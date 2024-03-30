@@ -25,7 +25,7 @@ const routes = (app) => {//getting the created express instance from index.js
         console.log(`REST Verb used: ${req.method}`)//examing the REST verb the requester used
         next();//do the official response
     }, getList)//decoupling data layer from routes layer
-
+    app.route('/lists')
     //passing in the contacts created from the controller response
     .post(addList);//passing in the function/controller into the post command
 

@@ -7,10 +7,7 @@ export const ListSchema = new Schema({
         type: String,
         required: 'Enter a title'
     }, 
-    Status:{
-        type: String,
-        required: 'Enter a status'
-    },
+    Status: Boolean,
     created_date: {
         type: Date,
         default: Date.now
