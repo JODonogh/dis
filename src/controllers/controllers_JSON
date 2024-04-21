@@ -1,9 +1,0 @@
-import data from './models/mock.json';
-
-//GET with Routing Parameters
-app.get('/list/:id', (req, res)=> {
-    const list_Id = Number(request.params.listId);
-    
-    const list_el = data.filter((list_el) => list_el.id === list_Id);
-    response.send(list_el);
-});

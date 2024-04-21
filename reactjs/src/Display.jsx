@@ -10,7 +10,7 @@ const Display = (props) => {
           {props.items.map((item) => (
             <li key={item._id}>
               {item.Title} - {item.Status ? "Saved" : "Not Saved"} - {" "}
-              <button
+              <button id={item.Title}
                 onClick={(event) => {
                   props.editthisItem(item);
                   his('/edit')
@@ -18,7 +18,7 @@ const Display = (props) => {
               >
                 Edit
               </button>
-              <button onClick={() => props.deleteItem(item)}>Delete</button>
+              <button id={"Delete "  + item.Title} onClick={() => props.deleteItem(item)}>Delete</button>
             </li>
           ))}
         </ul>

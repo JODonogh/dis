@@ -7,7 +7,7 @@ const Form = (props) => {
     const {
       initialState = { Title: "", Status: false },
       submitFunc = () => {},
-      label = "submit",
+      label = "update",
       history
     } = props;
   
@@ -35,9 +35,9 @@ const Form = (props) => {
   
     return (
       <form onSubmit={handleSubmit}>
-        <input type="text" name="Title" value={formState.Title} onChange={handleChange} />
+        <input id="update-text" type="text" name="Title" value={formState.Title} onChange={handleChange} />
         <input type="checkbox" name="Status" checked={formState.Status} onChange={handleChange}/>
-        <input type="submit" value={label} />
+        <input id="update-button" type="submit" value={label} />
       </form>
     );
   };

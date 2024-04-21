@@ -1,13 +1,11 @@
 <p>display works!</p>
 <a routerLink="/create">
-<button>
-    CREATE Wishlist Item
-</button>
+<button id="create-button">CREATE Wishlist Item</button>
 </a>
 <ul>
     <li *ngFor="let items of itemService.items; index as i;">
-        <h1 (click)="selectItems(items)">{{items.Title}}</h1> 
+        <button id= {{items.Title}} (click)="selectItems(items)">{{items.Title}}</button> 
         <h2>{{items.Status}}</h2>
-        <button (click)="itemService.deleteItem(items)">Delete</button>
+        <button class={{items.Title}} (click)="itemService.deleteItem(items)">Delete</button>
     </li>
 </ul>

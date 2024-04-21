@@ -1,7 +1,7 @@
 <!--Binds the event-->
 <form (ngSubmit)="handleSubmit()" name="form">
     <!--2-way binding. The parenthesis means we can send a message to the class, the square brackets means the class can send a signal back-->
-    <input type="text" name= "Title" [(ngModel)]="Title">
+    <input id="update-text" type="text" name= "Title" [(ngModel)]="Title">
     <input type="checkbox" name="Status" [(ngModel)]="Status">
-    <input type="submit">
+    <input id="update-button" type="submit">
 </form>
