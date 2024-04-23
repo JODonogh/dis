@@ -18,39 +18,29 @@ function appendFile(data){
   });
 };
 
-//DRY
-function file_data(framework, crud, number){
-  let data = "\r\n" + framework + "," + crud + "," + number
-      appendFile(data);
-}
+//const observer = new PerformanceObserver((list) => {
+//    list.getEntries().forEach((entry) => {
+//        writeInFile(entry.toJSON());
+//    });
+//  });
+  
+//  observer.observe({ type: "event", buffered: true }); 
 
 
-describe("React Tests", function(){
+describe("CRUD Tests", function(){
     this.timeout(5000);
-    let driver;
-
-      //duplicate code up here
-    beforeEach(async function(){
-      await driver.get("http://localhost:3006/");
-      let title = await driver.getTitle();
-      expect(title).to.equal("React App");
-    });
-
-    afterEach(async function(){
-      
-    });
-
-    before(async function(){
-      driver= await new Builder().forBrowser('chrome').build();
-      await driver.manage().setTimeouts( {implicit: 1000} );//this applies the wait for the whole driver session
-    });
-
-    after(async function(){//only once per test suite
-      //teardown 
-      await driver.quit();
-    })
 
     it("React create button", async function(){
+        
+
+        let driver= await new Builder().forBrowser('chrome').build();
+        await driver.manage().setTimeouts( {implicit: 1000} );
+
+        await driver.get("http://localhost:3006/");
+
+        let title = await driver.getTitle();
+        expect(title).to.equal("React App");
+
         // performance marker for React Create functionality
         performance.mark("React-create-start");
 
@@ -75,12 +65,30 @@ describe("React Tests", function(){
         "React-create-end",
       );
       
-      file_data("React" , "Create", loginMeasure.duration.toString() )
-      //let data = "\r\n" + "React" + "," + "Create" + "," + loginMeasure.duration.toString() 
-      //appendFile(data);  
+      let data = "\r\n" + "React" + "," + "Create" + "," + loginMeasure.duration.toString() 
+      appendFile(data);
+       
+       //teardown 
+       await driver.quit();
     });
 
+
+
     it("React update list item", async function(){
+        //setup
+        //console.beginLog();
+        //Selenium Build operation needs to be asychronous
+        let driver= await new Builder().forBrowser('chrome').build();
+        //implicit wait, letting selenium hold the DOM for this duration
+        await driver.manage().setTimeouts( {implicit: 1000} );
+
+        //opening the website 
+        await driver.get("http://localhost:3006/");
+ 
+        //getting the current page title from the browser
+        let title = await driver.getTitle();
+        expect(title).to.equal("React App");
+
         // performance marker for React Create functionality
         performance.mark("React-update-start");
 
@@ -107,13 +115,24 @@ describe("React Tests", function(){
         "React-update-end",
       );
       
-      file_data("React" , "Update" , loginMeasure.duration.toString() )
       //writeInFile("React update time", loginMeasure.duration.toString());
-  
-      
+      let data = "\r\n" + "React" + "," + "Update" + "," + loginMeasure.duration.toString() 
+      appendFile(data);
+        
+        //teardown 
+        await driver.quit();
     });
 
+
     it("React delete button", async function(){
+        let driver= await new Builder().forBrowser('chrome').build();
+        await driver.manage().setTimeouts( {implicit: 1000} );
+
+        await driver.get("http://localhost:3006/");
+
+        let title = await driver.getTitle();
+        expect(title).to.equal("React App");
+
         // performance marker for React Create functionality
         performance.mark("React-delete-start");
 
@@ -130,38 +149,22 @@ describe("React Tests", function(){
         "React-delete-end",
       );
       
-      file_data("React" , "Delete" , loginMeasure.duration.toString() )
+      let data = "\r\n" + "React" + "," + "Delete" + "," + loginMeasure.duration.toString() 
+      appendFile(data);
 
+       //teardown 
+       await driver.quit();
     });
-  });
 
-  describe("Angular Tests", function(){
-      this.timeout(5000);
-      let driver;
+    it("Angular create button", async function(){
+        let driver= await new Builder().forBrowser('chrome').build();
+        await driver.manage().setTimeouts( {implicit: 1000} );
 
-      //duplicate code up here
-      beforeEach(async function(){
         await driver.get("http://localhost:4200/");
 
         let title = await driver.getTitle();
         expect(title).to.equal("Angular WishList");
-      })
 
-      afterEach(async function(){
-      
-      });
-  
-      before(async function(){
-        driver= await new Builder().forBrowser('chrome').build();
-        await driver.manage().setTimeouts( {implicit: 1000} );//this applies the wait for the whole driver session
-      });
-  
-      after(async function(){//only once per test suite
-        //teardown 
-        await driver.quit();
-      })
-
-    it("Angular create button", async function(){
         // performance marker at the end of React Create functionality
        performance.mark("angular-create-start");
 
@@ -186,11 +189,28 @@ describe("React Tests", function(){
         "angular-create-end",
       );
       
-      file_data("Angular" , "Create" , loginMeasure.duration.toString() )
+      let data = "\r\n" + "Angular" + "," + "Create" + "," + loginMeasure.duration.toString()
+      appendFile(data);
+      //File.writeTextFile( "H:/dis_test/logfile.log", console.endLog().toString() );
 
+       //teardown 
+       await driver.quit();
     });
 
     it("Angular Update list item", async function(){
+        //setup
+        //Selenium Build operation needs to be asychronous
+        let driver= await new Builder().forBrowser('chrome').build();
+        //implicit wait, letting selenium hold the DOM for this duration
+        await driver.manage().setTimeouts( {implicit: 1000} );
+
+        //opening the website 
+        await driver.get("http://localhost:4200/");
+
+        //getting the current page title from the browser
+        let title = await driver.getTitle();
+        expect(title).to.equal("Angular WishList");
+
         // performance marker at the end of React Create functionality
        performance.mark("angular-update-start");
 
@@ -216,11 +236,23 @@ describe("React Tests", function(){
         "angular-update-end",
       );
       
-      file_data("Angular" , "Update" , loginMeasure.duration.toString() );
+      let data = "\r\n" +  "Angular" + "," + "Update" + "," + loginMeasure.duration.toString()
+      appendFile(data);
+      //File.writeTextFile( "H:/dis_test/logfile.log", console.endLog().toString() );
         
+        //teardown 
+        await driver.quit();
     });
 
     it("Angular delete button", async function(){
+        let driver= await new Builder().forBrowser('chrome').build();
+        await driver.manage().setTimeouts( {implicit: 1000} );
+
+        await driver.get("http://localhost:4200/");
+
+        let title = await driver.getTitle();
+        expect(title).to.equal("Angular WishList");
+
         // performance marker at the end of React Create functionality
        performance.mark("angular-delete-start");
 
@@ -237,8 +269,11 @@ describe("React Tests", function(){
         "angular-delete-end",
       );
       
-      file_data("Angular" , "Delete" , loginMeasure.duration.toString() );
+      let data = "\r\n" +  "Angular" + "," + "Delete" + "," + loginMeasure.duration.toString()
+      appendFile(data);
+      //File.writeTextFile( "H:/dis_test/logfile.log", console.endLog().toString() );
 
+       //teardown 
+       await driver.quit();
     });
 });
-
