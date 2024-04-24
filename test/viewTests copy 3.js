@@ -1,7 +1,6 @@
 import {expect} from "chai";
 import { Builder, By, Select } from "selenium-webdriver";
 import fs from "fs";
-import  ViewPage  from "./page_models/viewPage.js";
 
 function writeInFile(data){
     fs.writeFileSync("H:/dis_test/performance.txt", data, err => {
@@ -25,16 +24,16 @@ function file_data(framework, crud, number){
       appendFile(data);
 }
 
+
 describe("React Tests", function(){
     this.timeout(5000);
     let driver;
-    let viewPage;
 
       //duplicate code up here
     beforeEach(async function(){
       await driver.get("http://localhost:3006/");
-      viewPage = new ViewPage(driver);//passing the current driver to the POM
-      await viewPage.validatePage_React();
+      let title = await driver.getTitle();
+      expect(title).to.equal("React App");
     });
 
     afterEach(async function(){
@@ -51,19 +50,21 @@ describe("React Tests", function(){
       await driver.quit();
     })
 
-    //REACT CREATE
     it("React create button", async function(){
         // performance marker for React Create functionality
         performance.mark("React-create-start");
 
         //act 
-        await viewPage.selectCreateButton();
+        let createButtonElement= await driver.findElement(By.id("create-button")); 
+        await createButtonElement.click();
 
        //assert
-       await viewPage.getUpdateText("Selenium");
-       let inputElement = await viewPage.getUpdateValue();
+       let selectedElement = await driver.findElement(By.id("update-button"));
+       let inputField = await driver.findElement(By.id("update-text"));
+       await inputField.sendKeys('Selenium');
+       let inputElement = await driver.findElement(By.id("update-text")).getAttribute("value");
        expect(inputElement).to.equal("Selenium");
-       await viewPage.getUpdateButton();
+       await selectedElement.click();
 
        // performance marker at the end of React Create functionality
        performance.mark("React-create-end");
@@ -75,21 +76,27 @@ describe("React Tests", function(){
       );
       
       file_data("React" , "Create", loginMeasure.duration.toString() )
+      //let data = "\r\n" + "React" + "," + "Create" + "," + loginMeasure.duration.toString() 
+      //appendFile(data);  
     });
 
-    // REACT UPDATE
     it("React update list item", async function(){
         // performance marker for React Create functionality
         performance.mark("React-update-start");
 
         //act
-        await viewPage.selectUpdateButton();
+        //using findElement and by to find the button
+        let editButtonElement= await driver.findElement(By.id("Selenium"));
+        await editButtonElement.click(); //wait fo the click to happen
+        //console.log(editButtonElement);
 
         //assert
-        await viewPage.getUpdateText('s');
-        let inputElement = await viewPage.getUpdateValue();
+        let toEditElement = await driver.findElement(By.id("update-button"));
+        let inputField = await driver.findElement(By.id("update-text"));
+        await inputField.sendKeys('s');
+        let inputElement = await driver.findElement(By.id("update-text")).getAttribute("value");
         expect(inputElement).to.equal("Seleniums");
-        await viewPage.getUpdateButton();
+        await toEditElement.click();
 
         // performance marker at the end of React Create functionality
        performance.mark("React-update-end");
@@ -101,16 +108,18 @@ describe("React Tests", function(){
       );
       
       file_data("React" , "Update" , loginMeasure.duration.toString() )
- 
+      //writeInFile("React update time", loginMeasure.duration.toString());
+  
+      
     });
 
-      //REACT DELETE
     it("React delete button", async function(){
         // performance marker for React Create functionality
         performance.mark("React-delete-start");
 
         //act 
-        await viewPage.selectDeleteButton();
+        let deleteButtonElement= await driver.findElement(By.id("Delete Seleniums")); 
+        await deleteButtonElement.click();
 
          // performance marker at the end of React Create functionality
        performance.mark("React-delete-end");
@@ -129,13 +138,13 @@ describe("React Tests", function(){
   describe("Angular Tests", function(){
       this.timeout(5000);
       let driver;
-      let viewPage;
 
       //duplicate code up here
       beforeEach(async function(){
         await driver.get("http://localhost:4200/");
-        viewPage = new ViewPage(driver);//passing the current driver to the POM
-        await viewPage.validatePage_Angular();
+
+        let title = await driver.getTitle();
+        expect(title).to.equal("Angular WishList");
       })
 
       afterEach(async function(){
@@ -152,19 +161,21 @@ describe("React Tests", function(){
         await driver.quit();
       })
 
-      //ANGULAR CREATE
     it("Angular create button", async function(){
         // performance marker at the end of React Create functionality
        performance.mark("angular-create-start");
 
         //act 
-        await viewPage.selectCreateButton();
+        let createButtonElement= await driver.findElement(By.id("create-button")); 
+        await createButtonElement.click();
 
        //assert
-       await viewPage.getUpdateText("Selenium");
-       let inputElement = await viewPage.getUpdateValue();
+       let selectedElement = await driver.findElement(By.id("update-button"));
+       let inputField = await driver.findElement(By.id("update-text"));
+       await inputField.sendKeys('Selenium');
+       let inputElement = await driver.findElement(By.id("update-text")).getAttribute("value");
        expect(inputElement).to.equal("Selenium");
-       await viewPage.getUpdateButton();
+       await selectedElement.click();
 
        // performance marker at the end of React Create functionality
        performance.mark("angular-create-end");
@@ -179,19 +190,22 @@ describe("React Tests", function(){
 
     });
 
-    //ANGULAR UPDATE
     it("Angular Update list item", async function(){
         // performance marker at the end of React Create functionality
        performance.mark("angular-update-start");
 
         //act
-        await viewPage.selectUpdateButton();
+        //using findElement and by to find the button
+        let editButtonElement= await driver.findElement(By.id("Selenium"));
+        await editButtonElement.click(); //wait fo the click to happen
 
         //assert
-        await viewPage.getUpdateText('s');
-        let inputElement = await viewPage.getUpdateValue();
+        let toEditElement = await driver.findElement(By.id("update-button"));
+        let inputField = await driver.findElement(By.id("update-text"));
+        await inputField.sendKeys('s');
+        let inputElement = await driver.findElement(By.id("update-text")).getAttribute("value");
         expect(inputElement).to.equal("Seleniums");
-        await viewPage.getUpdateButton();
+        await toEditElement.click();
 
         // performance marker at the end of React Create functionality
        performance.mark("angular-update-end");
@@ -206,13 +220,13 @@ describe("React Tests", function(){
         
     });
 
-      //ANGULAR DELETE
     it("Angular delete button", async function(){
         // performance marker at the end of React Create functionality
        performance.mark("angular-delete-start");
 
         //act 
-        await viewPage.selectDeleteClass();
+        let deleteButtonElement= await driver.findElement(By.className("Seleniums")); 
+        await deleteButtonElement.click();
 
         // performance marker at the end of React Create functionality
        performance.mark("angular-delete-end");
