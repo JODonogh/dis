@@ -5,29 +5,25 @@ import { addList,
     deleteList } from '../controllers/controllers.js'
 
 // routes to deal with request
-// routes to call the Uniform Resource Identifier (URI) for a resource to get back 
-const routes = (app) => {//getting the created express instance from index.js
-    app.route('/')//creating an endpoint or URI
+const routes = (app) => {
+    app.route('/')
     .get((req,res) =>
         res.send('GET request sucessful!')
     )
-    app.route('/options')//creating an endpoint for UI options
-    .get((req,res) =>
-        res.send('GET request sucessful!')
-    )
+
     .patch((req,res) =>
         res.send('Patch request sucessful!')
     )
 
     app.route('/lists')//endpoint/URI for the DOM test
     .get((req,res, next) =>{
-        console.log(`URL of where the request is from: ${req.originalUrl}`)//getting the original UR Location from requestor
-        console.log(`REST Verb used: ${req.method}`)//examing the REST verb the requester used
-        next();//do the official response
-    }, getList)//decoupling data layer from routes layer
+        console.log(`URL of where the request is from: ${req.originalUrl}`)
+        console.log(`REST Verb used: ${req.method}`)
+        next();
+    }, getList)
     app.route('/lists')
-    //passing in the contacts created from the controller response
-    .post(addList);//passing in the function/controller into the post command
+    
+    .post(addList);
 
     //passing in the unique ID 
     app.route('/lists/:listId')
