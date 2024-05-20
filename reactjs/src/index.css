@@ -8,8 +8,7 @@
  * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "Fira Sans";
  }
  
  body {
@@ -18,7 +17,7 @@
  }
  
  .container {
-   max-width: 20rem;
+   max-width:  max-content;
    padding: 32px;
    margin: 0 auto;
  }
@@ -39,17 +38,6 @@
  .form button {
    padding: 3px;
    border: none;
-   cursor: pointer;
- }
- 
- .todo {
-   padding: 10px;
-   border-radius: 13px;
-   background-color: var(--dark);
-   margin-top: 2rem;
-   display: grid;
-   grid-template-columns: 3fr 0.3fr;
-   transition: 0.5s;
    cursor: pointer;
  }
  
@@ -74,8 +62,3 @@
    margin-left: 1rem;
  }
  
- .delete-todo {
-   display: flex;
-   justify-content: center;
-   align-items: center; 
- }

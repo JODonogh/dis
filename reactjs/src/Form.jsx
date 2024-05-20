@@ -34,10 +34,11 @@ const Form = (props) => {
     }
   
     return (
+      
       <form onSubmit={handleSubmit}>
         <input id="update-text" type="text" name="Title" value={formState.Title} onChange={handleChange} />
         <input type="checkbox" name="Status" checked={formState.Status} onChange={handleChange}/>
-        <input id="update-button" type="submit" value={label} />
+        <input id="update-button" type="submit" value="submit" />
       </form>
     );
   };

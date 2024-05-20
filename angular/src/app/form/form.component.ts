@@ -40,14 +40,17 @@ export class FormComponent {
       this.Status = false
       this.router.navigate(["/"]);
     }
+  
 
     if (this.action === "/edit"){
+      //performance.mark("Angular-edit-start-databinding");
       console.log(items, "if")
       items._id = this.id
       this.itemService.updateItem(items)
       this.Title= ""
       this.Status = false
       this.router.navigate(["/"]);
+      //performance.mark("Angular-edit-end-databinding");
     }
   }
 

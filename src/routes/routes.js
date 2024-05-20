@@ -3,27 +3,37 @@ import { addList,
     getListWithID,
     updateList,
     deleteList } from '../controllers/controllers.js'
+    
+
+
 
 // routes to deal with request
-const routes = (app) => {
-    app.route('/')
+// routes to call the Uniform Resource Identifier (URI) for a resource to get back 
+const routes = (app) => {//getting the created express instance from index.js
+    app.route('/')//creating an endpoint or URI
     .get((req,res) =>
         res.send('GET request sucessful!')
     )
-
+    app.route('/options')//creating an endpoint for UI options
+    .get((req,res) =>
+        res.send('GET request sucessful!')
+    )
     .patch((req,res) =>
         res.send('Patch request sucessful!')
     )
 
     app.route('/lists')//endpoint/URI for the DOM test
     .get((req,res, next) =>{
-        console.log(`URL of where the request is from: ${req.originalUrl}`)
-        console.log(`REST Verb used: ${req.method}`)
-        next();
-    }, getList)
+        console.log(`URL of where the request is from: ${req.originalUrl}`)//getting the original UR Location from requestor
+        console.log(`REST Verb used: ${req.method}`)//examing the REST verb the requester used
+        next();//do the official response
+    }, getList)//decoupling data layer from routes layer
+    
     app.route('/lists')
     
-    .post(addList);
+    .post(addList);//passing in the function/controller into the post command
+
+    
 
     //passing in the unique ID 
     app.route('/lists/:listId')

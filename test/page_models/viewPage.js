@@ -1,11 +1,9 @@
 //storing locators and operators which operate with elements on the page
-
 import { By } from "selenium-webdriver";
 
 class ViewPage{
     constructor(driver){//passing the driver to the constructor
         this.driver=driver;
-
 
     }
 
@@ -21,6 +19,10 @@ class ViewPage{
         if(title!= "Angular WishList"){
             throw Error("Wrong page reached.");
         }
+    }
+
+    findButton(button){
+        return this.driver.findElement(By.id(button)).isDisplayed(); 
     }
 
     selectCreateButton(){
