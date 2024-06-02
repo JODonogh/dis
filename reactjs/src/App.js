@@ -79,13 +79,12 @@ function App(props) {
     <div className="container">
       <div className="heading">
         <h1>Wishlist Items</h1>
-        <Link to="/new"><button id="create-button">Create a new list Item</button></Link> 
         <Routes>
           <Route path="/" element={ <Display items={items} editthisItem={setitemEdit} history={props.history} deleteItem={deleteItem}/> } />
           <Route exact path="/new" element={ <Form submitFunc={addItem} history={props.history} label="create"/> } />
           <Route exact path="/edit" element={ <Form submitFunc={editItem} history={props.history} label="update" initialState={itemToEdit} /> } />    
         </Routes>
-    </div>
+      </div>
     </div>
   );
 }

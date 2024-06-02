@@ -1,12 +1,13 @@
 import React from "react"
 import { useNavigate } from 'react-router-dom';
-
+import {Link} from "react-router-dom";
 
 const Display = (props) => {
   const his = useNavigate();
     if (props.items) {
       return (
         <ul>
+        <Link to="/new"><button id="create-button">Create a new list Item</button></Link> 
           {props.items.map((item) => (
             <li key={item._id}>
               {item.Title} - {item.Status ? "Saved" : "Not Saved"} - {" "}
